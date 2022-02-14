@@ -14,8 +14,8 @@ echo root:alone | chpasswd
 
 # You can add xorg to the installation packages, I usually add it at the DE or WM install script
 # You can remove the tlp package if you are installing on a desktop or vm
-
-pacman -S grub efibootmgr bluez bluez-utils networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools reflector base-devel linux-lts-headers avahi xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils inetutils dnsutils  pipewire pipewire-alsa pipewire-pulse pipewire-jack bash-completion openssh rsync reflector acpi acpi_call-lts bridge-utils dnsmasq ipset sof-firmware nss-mdns acpid os-prober ntfs-3g 
+pacman -Syy
+pacman -S grub efibootmgr bluez bluez-utils libvirt networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools reflector base-devel linux-lts-headers avahi xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils inetutils dnsutils  pipewire pipewire-alsa pipewire-pulse pipewire-jack bash-completion openssh rsync reflector acpi acpi_call-lts bridge-utils dnsmasq ipset sof-firmware nss-mdns acpid os-prober ntfs-3g 
 
 # pacman -S --noconfirm xf86-video-amdgpu
 #pacman -S --noconfirm nvidia-lts nvidia-utils nvidia-settings
@@ -31,11 +31,11 @@ systemctl enable reflector.timer
 systemctl enable fstrim.timer
 systemctl enable acpid
 
-useradd -m feroz
-echo feroz:alone | chpasswd
-#usermod -aG libvirt feroz
+useradd -m rahmath
+echo rahmath:alone | chpasswd
+usermod -aG libvirt rahmath
 
-echo "feroz ALL=(ALL) ALL" >> /etc/sudoers.d/feroz
+echo "rahmath ALL=(ALL) ALL" >> /etc/sudoers.d/rahmath
 
 
 printf "\e[1;32mDone! Type exit, umount -a and reboot.\e[0m"
