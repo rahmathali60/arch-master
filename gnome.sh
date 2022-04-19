@@ -22,7 +22,9 @@ sudo pacman -Syy
 #pikaur -S --noconfirm auto-cpufreq
 #sudo systemctl enable --now auto-cpufreq
 
-sudo pacman -S gdm gnome gnome-terminal htop powertop neofetch gnome-tweaks gnome-icon-theme gnome-themes-extra ttf-liberation ttf-hack  
+#sudo pacman -S gdm gnome gnome-terminal htop powertop neofetch gnome-tweaks gnome-icon-theme ttf-liberation ttf-hack adwaita-icon-theme 
+# sudo pacman -S eog htop powertop  gnome-themes-extra gnome-icon-theme-extras neofetch adwaita-icon-theme gnome-tweaks evince file-roller gdm gedit gnome-backgrounds  gnome-control-center gnome-keyring gnome-menus gnome-session gnome-settings-daemon gnome-shell  gnome-shell-extensions gnome-terminal grilo-plugins gvfs gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb mutter nautilus rygel  sushi  tracker tracker-miners tracker3-miners vino xdg-user-dirs-gtk
+
 
 #sudo flatpak install -y spotify
 #sudo flatpak install -y kdenlive
