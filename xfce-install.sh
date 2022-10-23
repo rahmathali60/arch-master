@@ -1,43 +1,31 @@
 #!/bin/bash
 
-ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
-hwclock --systohc
-sed -i '178s/.//' /etc/locale.gen
-locale-gen
-echo "LANG=en_US.UTF-8" >> /etc/locale.conf
-#echo "KEYMAP=de_CH-latin1" >> /etc/vconsole.conf
-echo "arch" >> /etc/hostname
-echo "127.0.0.1 localhost" >> /etc/hosts
-echo "::1       localhost" >> /etc/hosts
-echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
-echo root:0985 | chpasswd
+sudo timedatectl set-ntp true
+sudo hwclock --systohc
 
-# You can add xorg to the installation packages, I usually add it at the DE or WM install script
-# You can remove the tlp package if you are installing on a desktop or vm
+sudo reflector -c Switzerland -a 12 --sort rate --save /etc/pacman.d/mirrorlist
 
-pacman -Syy
-pacman -S grub efibootmgr bluez bluez-utils networkmanager network-manager-applet  dialog wpa_supplicant mtools dosfstools reflector base-devel linux-headers xorg avahi  nfs-utils inetutils dnsutils alsa-utils bash-completion reflector acpi acpi_call bridge-utils dnsmasq vi pulseaudio ipset sof-firmware nss-mdns acpid os-prober ntfs-3g  xdg-user-dirs xdg-utils
+#sudo firewall-cmd --add-port=1025-65535/tcp --permanent
+#sudo firewall-cmd --add-port=1025-65535/udp --permanent
+#sudo firewall-cmd --reload
 
-# pacman -S --noconfirm xf86-video-amdgpu
-#pacman -S --noconfirm nvidia-lts nvidia-utils nvidia-settings
+#git clone https://aur.archlinux.org/pikaur.git
+#cd pikaur/
+#makepkg -si --noconfirm
 
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
-grub-mkconfig -o /boot/grub/grub.cfg
+#pikaur -S --noconfirm system76-power
+#sudo systemctl enable --now system76-power
+#sudo system76-power graphics integrated
+#pikaur -S --noconfirm gnome-shell-extension-system76-power-git
+#pikaur -S --noconfirm auto-cpufreq
+#sudo systemctl enable --now auto-cpufreq
 
-systemctl enable NetworkManager
-systemctl enable bluetooth
-#systemctl enable sshd
-systemctl enable avahi-daemon
-#systemctl enable tlp # You can comment this command out if you didn't install tlp, see above
-systemctl enable reflector.timer
-systemctl enable fstrim.timer
-systemctl enable acpid
+sudo pacman -S --noconfirm xorg lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings xfce4 xfce4-goodies firefox simplescreenrecorder vlc
 
-useradd -m rahmath
-echo rahmath:0985 | chpasswd
-#usermod -aG libvirt rahmath
+#sudo flatpak install -y spotify
+#sudo flatpak install -y kdenlive
 
-echo "rahmath ALL=(ALL) ALL" >> /etc/sudoers.d/rahmath
-
-
-#printf "\e[1;32mDone! Type exit, umount -a and reboot.\e[0m"
+sudo systemctl enable lightdm
+/bin/echo -e "\e[1;32mREBOOTING IN 5..4..3..2..1..\e[0m"
+sleep 5
+sudo reboot
