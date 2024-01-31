@@ -2,7 +2,7 @@
 
 ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
 hwclock --systohc
-sed -i '178s/.//' /etc/locale.gen
+sed -i '171s/.//' /etc/locale.gen
 locale-gen
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 #echo "KEYMAP=de_CH-latin1" >> /etc/vconsole.conf
@@ -26,17 +26,17 @@ grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable NetworkManager
 systemctl enable bluetooth
 #systemctl enable sshd
-systemctl enable avahi-daemon
+#systemctl enable avahi-daemon
 #systemctl enable tlp # You can comment this command out if you didn't install tlp, see above
 systemctl enable reflector.timer
 systemctl enable fstrim.timer
 systemctl enable acpid
 
-useradd -m rahmath
-echo rahmath:0985 | chpasswd
-#usermod -aG libvirt rahmath
+useradd -m feroz
+echo feroz:0985 | chpasswd
+#usermod -aG libvirt feroz
 
-echo "rahmath ALL=(ALL) ALL" >> /etc/sudoers.d/rahmath
+echo "feroz ALL=(ALL) ALL" >> /etc/sudoers.d/feroz
 
 
 printf "\e[1;32mDone! Type exit, umount -a and reboot.\e[0m"
