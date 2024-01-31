@@ -1,0 +1,121 @@
+#Post installation of gNome.
+
+#Installation Of Hardware Accelerating Drivers(Vaapi) : 
+
+sudo pacman -S intel-media-driver gstreamer gstreamer-vaapi gst-libav gst-plugins-good gst-plugins-base gst-plugins-bad gst-plugins-ugly vulkan-intel 
+
+#Photo editor #Thumnails #Photo Codecs #Video Codecs
+
+sudo pacman -S gthumb ffmpegthumbnailer libavif libwebp webp-pixbuf-loader aribb24 aribb25
+
+#Office and browser
+
+sudo pacman -S libreoffice-fresh firefox hunspell-en_us chromium 
+
+#For WAYLAND:
+
+sudo vim /etc/environment
+
+export MOZ_ENABLE_WAYLAND=1
+export MOZ_DISABLE_RDD_SANDBOX=1
+#LIBVA_DRIVER_NAME=iHD
+#QT_QPA_PLATFORM=wayland
+
+#Firefox configuration: 
+about:config
+
+gfx.webrender.all           --) true
+media.ffmpeg.vaapi.enabled  --) true
+media.ffvpx.enabled         --) false
+media.rdd-vpx.enabled       --) false
+media.av1.enabled           --) false
+
+#Kernal: 
+
+sudo vim /etc/default/grub
+
+GRUB_CMDLINE_LINUX="nouveau.modeset=0"
+GRUB_DISABLE_OS_PROBER=false
+
+#chrome-gnome-shell
+paru -S chrome-gnome-shell
+
+https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/
+
+#extension
+https://extensions.gnome.org/extension/4158/gnome-40-ui-improvements/
+https://extensions.gnome.org/extension/4703/dock-from-dash/
+https://extensions.gnome.org/extension/1160/dash-to-panel/
+https://extensions.gnome.org/extension/4548/tactile/
+https://extensions.gnome.org/extension/615/appindicator-support/
+
+
+#paru
+
+git clone https://aur.archlinux.org/paru-bin
+
+makepkg -si
+
+#zramd
+
+sudo pacman -S go 
+
+paru -S zramd
+
+#google-chrome
+
+paru -S google-chrome
+
+#config 
+
+cd ~/.config/
+vim chrome-flags.conf 
+
+--enable-features=VaapiVideoDecoder --use-gl=egl --ozone-platform-hint=auto
+
+#visual-studio-code
+
+paru -S visual-studio-code-bin 
+
+#vs-extensions 
+
+C/C++
+C/C++ Themes
+Better C++ Syntax
+Doxygen Documentation Generator
+Code Runner
+HTML Snippets
+indent-rainbow
+Language Support for Java(TM) by Red Hat
+Material Icon Theme
+Python
+rust-analyzer
+Visual Studio IntelliCode
+Pylance
+
+
+#jdk-openjdk  and pdftk, yt-dlp
+
+sudo pacman -S jdk-openjdk yt-dlp pdftk
+
+
+#flatpak
+
+sudo pacman -S flatpak
+
+#obs-studio
+
+app/com.obsproject.Studio/x86_64/stable
+
+
+#qt wayland
+
+sudo pacman -S qt5-wayland qt6-wayland qt6-declarative qt6-declarative qt5-base  qt6-base 
+
+#OBS 
+
+sudo pacman -S obs-studio
+
+#rust 
+
+https://www.rust-lang.org/tools/install
