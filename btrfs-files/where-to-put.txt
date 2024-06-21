@@ -1,0 +1,7 @@
+First file that is long and not in install directory
+
+/etc/initcpio/hooks/switchsnaprotorw
+
+Second file that is short and that is in install  directory
+
+/etc/initcpio/install/switchsnaprotorw
